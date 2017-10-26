@@ -4,7 +4,7 @@
 library(dplyr)
 
 # We'll be using the mtcars dataset -- adding rowname as a column
-vehicle <- mutate(mtcars, car=rownames(mtcars))
+vehicle <- mutate(mtcars, car = rownames(mtcars))
 
 
 ######## buggy ######### ----------------------------------------------
@@ -12,12 +12,13 @@ vehicle <- mutate(mtcars, car=rownames(mtcars))
 # Function to debug:
 # Given a number of forward gears and a number of cylinders, what is the 
 # Name of the car with the best mpg?
-BestGearsCyl <- functon(gears, cylinders) {
-  ret <- vehicles %>%  
-        filter(gear == gears, cyl == cylinders) %>% 
-        filter(mgp = max(mpg)) %>% 
+BestGearsCyl <- function(gears, cylinders) {
+  ret <- vehicle %>%  
+        filter(gear == gears & cyl == cylinders) %>% 
+        filter(mpg == max(mpg)) %>% 
         select(car)
+  return(ret)
 }
 
 # Get the best mpg car for 6 cylinder cars with 4 gears
-answer <- BestGearsCyl(6, 4)
+answer <- BestGearsCyl(4, 6)
